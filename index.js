@@ -1,6 +1,6 @@
 function createServicePack(execlib){
   var execSuite = execlib.execSuite;
-  DataServicePack = require('hers_dataservice')(execlib),
+  DataServicePack = require('allex_dataservice')(execlib),
   ParentServicePack = DataServicePack;
   return {
     Service: require('./servicecreator')(execlib,ParentServicePack),
