@@ -1,5 +1,5 @@
 {
-  "name": "allex_service",
+  "name": "allex_servicecollectionservice",
   "version": "0.1.0",
   "description": "Service",
   "main": "index.js",
@@ -12,8 +12,7 @@
   },
   "keywords": [
     "ecosystem:allex",
-    "Service",
-    ""
+    "Service"
   ],
   "dependencies" : {
     "allexcore": "git+ssh://git@gitlab.hers.rs/allex/core",
