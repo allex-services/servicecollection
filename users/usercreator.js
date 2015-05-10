@@ -8,6 +8,9 @@ function createUser(execlib,ParentUser){
     ParentUser.call(this,prophash);
   }
   ParentUser.inherit(User,require('../methoddescriptors/user'),require('../visiblefields/user'));
+  User.prototype.__cleanUp = function(){
+    ParentUser.prototype.__cleanUp.call(this);
+  };
 
   return User;
 }

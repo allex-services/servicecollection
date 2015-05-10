@@ -1,20 +1,24 @@
 {
-  "name": "allex_servicecollectionservice",
+  "name": "allex_service",
   "version": "0.1.0",
-  "description": "ServicecollectionService",
+  "description": "Service",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
   },
   "repository": {
     "type": "git",
-    "url": "git@gitlab.hers.rs:allex_services/servicecollection.git"
+    "url": "git@gitlab.hers.rs:allex_services/.git"
   },
   "keywords": [
     "ecosystem:allex",
     "Service",
-    "Servicecollection"
+    ""
   ],
+  "dependencies" : {
+    "allexcore": "git+ssh://git@gitlab.hers.rs/allex/core",
+    "allex_servicecontainerservice": "git+ssh://git@gitlab.hers.rs/allex_services/servicecontainer"
+    },
   "author": "HERS Belgrade",
   "license": "ISC"
 }

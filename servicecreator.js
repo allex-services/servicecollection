@@ -1,7 +1,6 @@
-function createServiceCollectionService(execlib,ParentServicePack){
+function createService(execlib,ParentServicePack){
   var ParentService = ParentServicePack.Service,
-    dataSuite = execlib.dataSuite,
-    MemoryStorage = dataSuite.MemoryStorage;
+    dataSuite = execlib.dataSuite;
 
   function factoryCreator(parentFactory){
     return {
@@ -10,14 +9,20 @@ function createServiceCollectionService(execlib,ParentServicePack){
     };
   }
 
-  function ServiceCollectionService(prophash){
+  function Service(prophash){
     ParentService.call(this,prophash);
+    if(!prophash.modulename){
+      throw "No properyhash.modulename for ServiceCollectionService";
+    }
   }
-  ParentService.inherit(ServiceCollectionService,factoryCreator,require('./recorddescriptor'));
-  ServiceCollectionService.prototype.createStorage = function(){
-    return new MemoryStorage;
+  ParentService.inherit(Service,factoryCreator,require('./storagedescriptor'));
+  Service.prototype.__cleanUp = function(){
+    ParentService.prototype.__cleanUp.call(this);
   };
-  return ServiceCollectionService;
+  Service.prototype.createStorage = function(storagedescriptor){
+    return ParentService.prototype.createStorage.call(this,storagedescriptor);
+  };
+  return Service;
 }
 
-module.exports = createServiceCollectionService;
+module.exports = createService;

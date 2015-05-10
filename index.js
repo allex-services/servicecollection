@@ -1,7 +1,8 @@
 function createServicePack(execlib){
   var execSuite = execlib.execSuite;
-  DataServicePack = require('allex_dataservice')(execlib),
-  ParentServicePack = DataServicePack;
+  servicecontainerServicePack = execSuite.registry.register('allex_servicecontainerservice'),
+  ParentServicePack = servicecontainerServicePack;
+
   return {
     Service: require('./servicecreator')(execlib,ParentServicePack),
     SinkMap: require('./sinkmapcreator')(execlib,ParentServicePack)

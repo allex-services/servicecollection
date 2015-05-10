@@ -8,18 +8,8 @@ function createServiceUser(execlib,ParentUser){
     ParentUser.call(this,prophash);
   }
   ParentUser.inherit(ServiceUser,require('../methoddescriptors/serviceuser'),require('../visiblefields/serviceuser'));
-  ServiceUser.prototype.instantiateService = function(servicedesc,defer){
-    defer.promise.then(this.onServicePackInstantiated2.bind(this,servicedesc));
-    ParentUser.prototype.instantiateService.call(this,servicedesc,defer);
-  };
-  ServiceUser.prototype.onServicePackInstantiated2 = function(servicedesc){
-    console.log('ServiceCollection instantiated',arguments);
-    console.log(this.__service.record);
-    var record = {};
-    this.__service.record.extractFromTo(servicedesc,record);
-    this.__service.record.extractFromTo(servicedesc.prophash,record);
-    console.log('And the record is:',record);
-    this.__service.data.create(record);
+  ServiceUser.prototype.__cleanUp = function(){
+    ParentUser.prototype.__cleanUp.call(this);
   };
 
   return ServiceUser;

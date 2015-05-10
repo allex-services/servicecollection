@@ -1,20 +1,15 @@
 function createUserSink(execlib,ParentSink){
 
   if(!ParentSink){
-    ParentSink = execlib.execSuite.ServicePack.SinkMap.get('user');
+    ParentSink = execlib.execSuite.registry.get('.').SinkMap.get('user');
   }
 
   function UserSink(prophash,client){
     ParentSink.call(this,prophash,client);
   }
   ParentSink.inherit(UserSink,require('../methoddescriptors/user'),require('../visiblefields/user'));
-  UserSink.prototype.createStateFilter = function(){
-    //TODO: create your filter here
-    return null;
-  };
-  UserSink.prototype.createDataFilter = function(){
-    //TODO: create your filter here
-    return null;
+  UserSink.prototype.__cleanUp = function(){
+    ParentSink.prototype.__cleanUp.call(this);
   };
   return UserSink;
 }
