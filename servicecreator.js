@@ -12,11 +12,13 @@ function createService(execlib,ParentServicePack){
   function Service(prophash){
     ParentService.call(this,prophash);
     if(!prophash.modulename){
-      throw "No properyhash.modulename for ServiceCollectionService";
+      throw "No propertyhash.modulename for ServiceCollectionService";
     }
+    this.submodulename = prophash.modulename;
   }
   ParentService.inherit(Service,factoryCreator,require('./storagedescriptor'));
   Service.prototype.__cleanUp = function(){
+    this.submodulename = null;
     ParentService.prototype.__cleanUp.call(this);
   };
   Service.prototype.createStorage = function(storagedescriptor){
