@@ -14,10 +14,6 @@
     "ecosystem:allex",
     "Service"
   ],
-  "dependencies" : {
-    "allexcore": "git+ssh://git@gitlab.hers.rs/allex/core",
-    "allex_servicecontainerservice": "git+ssh://git@gitlab.hers.rs/allex_services/servicecontainer"
-    },
   "author": "HERS Belgrade",
   "license": "ISC"
 }

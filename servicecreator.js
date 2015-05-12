@@ -1,6 +1,8 @@
 function createService(execlib,ParentServicePack){
   var ParentService = ParentServicePack.Service,
-    dataSuite = execlib.dataSuite;
+    dataSuite = execlib.dataSuite,
+    execSuite = execlib.execSuite,
+    registry = execSuite.registry;
 
   function factoryCreator(parentFactory){
     return {
@@ -14,6 +16,7 @@ function createService(execlib,ParentServicePack){
     if(!prophash.modulename){
       throw "No properyhash.modulename for ServiceCollectionService";
     }
+    registry.register(prophash.modulename);
   }
   ParentService.inherit(Service,factoryCreator,require('./storagedescriptor'));
   Service.prototype.__cleanUp = function(){
