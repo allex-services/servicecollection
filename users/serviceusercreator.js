@@ -1,4 +1,5 @@
 function createServiceUser(execlib,ParentUser){
+  var execSuite = execlib.execSuite;
 
   if(!ParentUser){
     ParentUser = execlib.execSuite.ServicePack.Service.prototype.userFactory.get('user');
@@ -10,6 +11,22 @@ function createServiceUser(execlib,ParentUser){
   ParentUser.inherit(ServiceUser,require('../methoddescriptors/serviceuser'),require('../visiblefields/serviceuser'));
   ServiceUser.prototype.__cleanUp = function(){
     ParentUser.prototype.__cleanUp.call(this);
+  };
+  ServiceUser.prototype.acquireSink = function(spawndescriptor,defer){
+    if(!this.__service.submodulename){
+      defer.reject('Service is down');
+    }
+    execSuite.start({
+      service:{
+        modulename: this.__service.submodulename,
+        instancename: spawndescriptor.instancename,
+        propertyhash: spawndescriptor
+      }
+    }).done(
+      defer.resolve.bind(defer),
+      defer.reject.bind(defer),
+      defer.notify.bind(defer)
+    );
   };
 
   return ServiceUser;
