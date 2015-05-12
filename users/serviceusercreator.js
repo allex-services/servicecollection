@@ -19,7 +19,7 @@ function createServiceUser(execlib,ParentUser){
     execSuite.start({
       service:{
         modulename: this.__service.submodulename,
-        instancename: spawndescriptor.name,
+        instancename: spawndescriptor.instancename,
         propertyhash: spawndescriptor
       }
     }).done(
