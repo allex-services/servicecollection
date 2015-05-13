@@ -18,6 +18,7 @@ function createService(execlib,ParentServicePack){
     }
     registry.register(prophash.modulename);
     this.submodulename = prophash.modulename;
+    this.global = prophash.global || true; //globalregistration of subServices by default
   }
   ParentService.inherit(Service,factoryCreator,require('./storagedescriptor'));
   Service.prototype.__cleanUp = function(){
