@@ -1,4 +1,5 @@
 function createService(execlib,ParentServicePack){
+  'use strict';
   var ParentService = ParentServicePack.Service,
     dataSuite = execlib.dataSuite,
     execSuite = execlib.execSuite,

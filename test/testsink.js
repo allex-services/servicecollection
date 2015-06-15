@@ -1,4 +1,5 @@
 function createSinkConsumer(execlib){
+  'use strict';
   function SinkConsumer(){
     this.sink = null;
   }
