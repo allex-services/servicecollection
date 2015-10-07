@@ -13,7 +13,7 @@ function createServiceUser(execlib,ParentUser){
   ServiceUser.prototype.__cleanUp = function(){
     ParentUser.prototype.__cleanUp.call(this);
   };
-  ServiceUser.prototype.acquireSink = function(spawndescriptor,defer){
+  ServiceUser.prototype.acquireSink = function(spawnrecord, spawndescriptor,defer){
     if(!this.__service.submodulename){
       defer.reject('Service is down');
       return;
@@ -21,8 +21,8 @@ function createServiceUser(execlib,ParentUser){
     execSuite.start({
       service:{
         modulename: this.__service.submodulename,
-        instancename: this.__service.global ? spawndescriptor.instancename : null,
-        propertyhash: spawndescriptor
+        instancename: this.__service.global ? spawnrecord.instancename : null,
+        propertyhash: spawnrecord
       }
     }).done(
       defer.resolve.bind(defer),
