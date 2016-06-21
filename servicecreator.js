@@ -1,7 +1,6 @@
-function createService(execlib,ParentServicePack){
+function createService(execlib,ParentService){
   'use strict';
-  var ParentService = ParentServicePack.Service,
-    dataSuite = execlib.dataSuite,
+  var dataSuite = execlib.dataSuite,
     execSuite = execlib.execSuite,
     registry = execSuite.registry;
 
@@ -17,7 +16,7 @@ function createService(execlib,ParentServicePack){
     if(!prophash.modulename){
       throw "No propertyhash.modulename for ServiceCollectionService";
     }
-    registry.register(prophash.modulename);
+    registry.registerServerSide(prophash.modulename);
     this.submodulename = prophash.modulename;
     this.global = prophash.global || true; //globalregistration of subServices by default
   }
