@@ -13,22 +13,17 @@ function createServiceUser(execlib,ParentUser){
   ServiceUser.prototype.__cleanUp = function(){
     ParentUser.prototype.__cleanUp.call(this);
   };
-  ServiceUser.prototype.acquireSink = function(spawnrecord, spawndescriptor,defer){
+  ServiceUser.prototype.acquireSink = function(spawnrecord, spawndescriptor){
     if(!this.__service.submodulename){
-      defer.reject('Service is down');
-      return;
+      return q.reject(new lib.Error('SERVICE_DOWN'));
     }
-    execSuite.start({
+    return execSuite.start({
       service:{
         modulename: this.__service.submodulename,
         instancename: this.__service.global ? spawnrecord.instancename : null,
         propertyhash: spawnrecord
       }
-    }).done(
-      defer.resolve.bind(defer),
-      defer.reject.bind(defer),
-      defer.notify.bind(defer)
-    );
+    });
   };
 
   return ServiceUser;
